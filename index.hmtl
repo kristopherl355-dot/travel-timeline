@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Repaso de inglés: Travel Time</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eaf4fb;--card:#fff;--ink:#1b2a4a;--mute:#5a6b8c;--line:#cfdceb;--pink:#ff5c8a;--teal:#0f9d8f;--sun:#ffc83d;--ok:#17894a;--okbg:#dcf5e6;--bad:#c62f4b;--badbg:#fde3e8;--tip:#fff4cc;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1829;--card:#172640;--ink:#eaf1ff;--mute:#9fb2d4;--line:#2c4166;--ok:#6fe0a0;--okbg:#14402a;--bad:#ff8fa5;--badbg:#4a1b29;--tip:#3b3416}}
+:root[data-theme="dark"]{--bg:#0e1829;--card:#172640;--ink:#eaf1ff;--mute:#9fb2d4;--line:#2c4166;--ok:#6fe0a0;--okbg:#14402a;--bad:#ff8fa5;--badbg:#4a1b29;--tip:#3b3416}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 Nunito,system-ui,sans-serif}
+main{max-width:760px;margin:0 auto;padding:16px}
+h1,h2,h3{font-family:Fredoka,system-ui,sans-serif;font-weight:600;margin:0}
+.pass{display:flex;background:var(--card);border-radius:18px;border:2px solid var(--ink);overflow:hidden;margin-bottom:14px}
+.pass .main{flex:1;padding:16px 18px}
+.pass h1{font-size:1.7rem;line-height:1.15}
+.pass p{margin:4px 0 0;color:var(--mute)}
+.pass .stub{border-left:3px dashed var(--ink);padding:12px 14px;background:var(--sun);color:#1b2a4a;text-align:center;display:flex;flex-direction:column;justify-content:center;min-width:104px}
+.stub b{font:600 1.7rem Fredoka,sans-serif;display:block}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;gap:8px;overflow-x:auto;padding:8px 0;background:var(--bg)}
+nav button{flex:none;border:2px solid var(--line);background:var(--card);color:var(--ink);font:600 .95rem Fredoka,sans-serif;padding:8px 14px;border-radius:999px;cursor:pointer}
+nav button[aria-selected=true]{background:var(--pink);border-color:var(--pink);color:#fff}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+section{display:none}section.on{display:block}
+.tip{background:var(--tip);border-radius:14px;padding:14px 16px;margin:10px 0 16px}
+.tip h3{font-size:1.1rem;margin-bottom:6px}
+.tip ul{margin:6px 0 0;padding-left:20px}.tip li{margin:3px 0}
+.tip code,.ex-s{background:rgba(0,0,0,.08);border-radius:6px;padding:0 6px;font-weight:700}
+.grp{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:16px}
+.grp h3{font-size:1.15rem;margin-bottom:8px}
+.grp ol{margin:0;padding-left:24px}.grp li{margin:10px 0}
+.in,select,textarea{font:700 1rem Nunito,sans-serif;color:var(--ink);background:var(--bg);border:2px solid var(--line);border-radius:10px;padding:5px 8px;margin:0 3px;max-width:100%}
+.in{width:9.5em}.in.s{width:4.6em}
+.ok{border-color:var(--ok)!important;background:var(--okbg)!important}
+.bad{border-color:var(--bad)!important;background:var(--badbg)!important}
+.bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:12px}
+.btn{border:0;border-radius:12px;padding:10px 16px;font:600 1rem Fredoka,sans-serif;cursor:pointer;background:var(--teal);color:#fff}
+.btn.alt{background:transparent;color:var(--ink);border:2px solid var(--line)}
+.res{font-weight:800}
+.ans{display:block;color:var(--ok);font-size:.9rem;font-weight:700}
+textarea{width:100%;min-height:62px;margin:6px 0 0;display:block;resize:vertical}
+details{margin-top:6px}summary{cursor:pointer;color:var(--teal);font-weight:800}
+.read{background:var(--card);border-left:6px solid var(--sun);border-radius:12px;padding:6px 16px;margin:10px 0 16px}
+.stars{font:600 1.5rem Fredoka,sans-serif}
+@media (max-width:480px){.pass{flex-direction:column}.pass .stub{border-left:0;border-top:3px dashed var(--ink);flex-direction:row;gap:10px;justify-content:center}}
+</style>
+</head>
+<body>
+<main>
+<div class="pass">
+  <div class="main">
+    <h1>Travel Time: repaso de inglés</h1>
+    <p>Practica cada tema, revisa tus respuestas y llega con todo listo a tu test de recuperación.</p>
+  </div>
+  <div class="stub"><span>Tus aciertos</span><b id="score">0 / 0</b></div>
+</div>
+<nav id="tabs" role="tablist"></nav>
+<div id="secs"></div>
+</main>
+
+<script>
+const S=[
+{n:"Present Simple",tip:`<h3>¿Cuándo se usa?</h3><p>Para <b>rutinas, gustos y hechos</b>: lo que haces siempre o casi siempre.</p>
+<ul><li>Con <code>he / she / it</code> el verbo termina en <b>-s</b>: she pack<b>s</b>, he stay<b>s</b>.</li>
+<li>Negativo: <code>don't</code> (I, you, we, they) o <code>doesn't</code> (he, she, it) + verbo <b>sin -s</b>: she doesn't take.</li>
+<li>Pregunta: <code>Do</code> / <code>Does</code> + sujeto + verbo sin -s: Does she prefer…?</li></ul>`,
+g:[
+{t:"Afirmativo: escribe el verbo en presente simple",i:[
+["I {} (travel) to a new country every year.",["travel"]],
+["She {} (pack) her suitcase the night before.",["packs"]],
+["They {} (visit) their grandparents in Spain.",["visit"]],
+["He {} (stay) in a hotel when he is on business.",["stays"]],
+["We {} (love) trying local food.",["love"]]]},
+{t:"Negativo: usa don't o doesn't + verbo",i:[
+["I {} (not / like) long flights.",["don't like","do not like"]],
+["She {} (not / take) the train to work.",["doesn't take","does not take"]],
+["They {} (not / speak) the local language.",["don't speak","do not speak"]],
+["He {} (not / buy) souvenirs.",["doesn't buy","does not buy"]],
+["We {} (not / have) a big budget for the trip.",["don't have","do not have"]]]},
+{t:"Pregunta: completa con Do / Does y el verbo",i:[
+["{} you {} (want) to go on holiday?",["do"],["want"]],
+["{} she {} (prefer) the beach to the mountains?",["does"],["prefer"]],
+["{} they {} (need) a visa to travel?",["do"],["need"]],
+["{} he {} (know) the way to the museum?",["does"],["know"]],
+["{} we {} (have) enough time to visit the castle?",["do"],["have"]]]}]},
+
+{n:"Present Continuous",tip:`<h3>¿Cuándo se usa?</h3><p>Para lo que está pasando <b>ahora mismo</b>: <i>now, right now, at the moment</i>.</p>
+<ul><li>Fórmula: <code>am / is / are</code> + verbo con <b>-ing</b>.</li>
+<li>I → <b>am</b> · he, she, it → <b>is</b> · you, we, they → <b>are</b>.</li>
+<li>Negativo: am not / <b>isn't</b> / <b>aren't</b> + verbo-ing.</li>
+<li>Pregunta: se invierte el orden: <b>Are</b> you enjoying…? <b>Is</b> she travelling…?</li>
+<li>Ojo: swim → swi<b>mm</b>ing · get → ge<b>tt</b>ing · take → tak<b>ing</b> (se quita la e).</li></ul>`,
+g:[
+{t:"Afirmativo: am / is / are + verbo-ing",i:[
+["I {} (read) a travel blog at the moment.",["am reading","'m reading","m reading"]],
+["She {} (pack) her bags for the trip right now.",["is packing","'s packing"]],
+["They {} (wait) for the train at the station.",["are waiting","'re waiting"]],
+["He {} (take) photos of the beautiful scenery.",["is taking","'s taking"]],
+["We {} (look for) a good restaurant to have dinner.",["are looking for","'re looking for"]]]},
+{t:"Negativo",i:[
+["I {} (not / check) my email right now.",["am not checking","'m not checking"]],
+["She {} (not / sleep), she is reading.",["isn't sleeping","is not sleeping"]],
+["They {} (not / stay) in a hotel this time.",["aren't staying","are not staying"]],
+["He {} (not / carry) a heavy suitcase.",["isn't carrying","is not carrying"]],
+["We {} (not / plan) our next trip yet.",["aren't planning","are not planning"]]]},
+{t:"Pregunta: Am / Is / Are + verbo-ing",i:[
+["{} you {} (enjoy) your holiday?",["are"],["enjoying"]],
+["{} she {} (travel) with her family?",["is"],["travelling","traveling"]],
+["{} they {} (visit) the museum today?",["are"],["visiting"]],
+["{} he {} (swim) in the sea?",["is"],["swimming"]],
+["{} we {} (get) close to the beach?",["are"],["getting"]]]}]},
+
+{n:"In / On / At",tip:`<h3>Preposiciones de tiempo</h3>
+<ul><li><code>in</code> → partes del día (in the morning, in the afternoon), meses, estaciones y años: in summer, in 1995.</li>
+<li><code>on</code> → días y fechas: on Sundays, on July 10th.</li>
+<li><code>at</code> → horas y momentos puntuales: at 6:00 am, at midnight, at Christmas, at night.</li></ul>`,
+g:[{t:"Completa con in, on o at",i:[
+["We usually travel abroad {} summer.",["in"]],
+["I have a flight {} 6:00 am tomorrow.",["at"]],
+["He always visits his family {} Christmas.",["at"]],
+["She likes to go sightseeing {} the morning.",["in"]],
+["Our holiday starts {} July 10th.",["on"]],
+["The museum is closed {} Sundays.",["on"]],
+["We arrived at the hotel {} midnight.",["at"]],
+["I love to relax {} the weekend.",["at","on"]],
+["We will go on a city tour {} the afternoon.",["in"]],
+["He was born {} 1995.",["in"]]]}]},
+
+{n:"Comparatives",tip:`<h3>Comparar dos cosas con <i>than</i></h3>
+<ul><li>Adjetivo corto → <b>+er</b>: fast → <b>faster</b>, cheap → <b>cheaper</b>, safe → <b>safer</b>.</li>
+<li>Termina en consonante + y → <b>-ier</b>: noisy → <b>noisier</b>, heavy → <b>heavier</b>, easy → <b>easier</b>.</li>
+<li>Adjetivo largo (2+ sílabas) → <b>more</b> + adjetivo: <b>more</b> beautiful, <b>more</b> comfortable, <b>more</b> dangerous.</li>
+<li>Irregulares: good → <b>better</b> · bad → <b>worse</b>.</li></ul>`,
+g:[
+{t:"Escribe el comparativo",i:[
+["A plane is {} (fast) than a train.",["faster"]],
+["The food in this restaurant is {} (good) than the food in the hotel.",["better"]],
+["This beach is {} (beautiful) than the one we saw yesterday.",["more beautiful"]],
+["The journey by car is {} (cheap) than by plane.",["cheaper"]],
+["A hotel is {} (comfortable) than a hostel.",["more comfortable"]],
+["The weather is {} (bad) today than it was yesterday.",["worse"]],
+["The city is {} (noisy) than the countryside.",["noisier"]],
+["Traveling alone is {} (safe) than traveling with a group? No, it's {} (dangerous).",["safer"],["more dangerous"]],
+["My backpack is {} (heavy) than yours.",["heavier"]],
+["Learning a local language is {} (easy) for some people.",["easier"]]]},
+{t:"Elige la opción correcta",i:[
+["A plane is {} than a train.",["faster"],["fast","faster","more fast"]],
+["The food in this restaurant is {} than the food in the hotel.",["better"],["gooder","more good","better"]],
+["This beach is {} than the one we saw yesterday.",["more beautiful"],["beautifuler","more beautiful","most beautiful"]],
+["The journey by car is {} than by plane.",["cheaper"],["cheaper","more cheap","cheap"]],
+["A hotel is {} than a hostel.",["more comfortable"],["comfortabler","more comfortable","most comfortable"]],
+["The weather today is {} than yesterday.",["worse"],["worse","badder","more bad"]],
+["The city is {} than the countryside.",["noisier"],["noisier","more noisy","noisy"]]],mc:1}]}
+];
+
+const R={title:"My Trip to Japan",txt:[
+"My name is Emma and I am 25 years old. I am a photographer and I live in London. Last month, I traveled to Japan for the first time. It was an incredible experience!",
+"I visited Tokyo and Kyoto. Tokyo is bigger than Kyoto, but Kyoto is quieter and more traditional. The food in Japan is more delicious than I expected. I ate sushi and ramen every day. The restaurants are smaller than in my country, but the service is faster.",
+"The temples in Kyoto are more beautiful than the modern buildings in Tokyo. I took many photos there. The people in Japan are very polite and helpful. They are friendlier than people in some other big cities.",
+"I traveled by bullet train (Shinkansen) to go from Tokyo to Kyoto. The train is faster than the plane! Well, not really, but it is much more comfortable. The journey took about 2 hours. It was more exciting than traveling by car.",
+"Now I am back in London. I am looking at my photos and I feel very happy. Japan is more interesting than I thought. I want to go back next year and visit more cities. I think traveling is the best thing in the world because it makes me feel more alive than anything else."],
+q:[["What is Emma's job?","Emma is a photographer."],
+["Which cities did Emma visit in Japan?","She visited Tokyo and Kyoto."],
+["Is Tokyo bigger or smaller than Kyoto?","Tokyo is bigger than Kyoto."],
+["What did Emma eat in Japan?","She ate sushi and ramen every day."],
+["Why does Emma think Japan is more interesting than she thought?","Because the food is delicious, the temples are beautiful and the people are polite and friendly."],
+["How did Emma travel from Tokyo to Kyoto?","She traveled by bullet train (Shinkansen)."]]};
+
+const norm=s=>s.toLowerCase().replace(/[’`]/g,"'").replace(/\s+/g,' ').trim();
+const tabs=document.getElementById('tabs'),secs=document.getElementById('secs'),sc=document.getElementById('score');
+const done={};let total=0;
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function field(ans,opts){
+  if(opts)return `<select data-a='${esc(JSON.stringify(ans))}'><option value="">…</option>${opts.map(o=>`<option>${o}</option>`).join('')}</select>`;
+  const short=ans[0].length<=5?' s':'';
+  return `<input class="in${short}" autocomplete="off" autocapitalize="none" spellcheck="false" data-a='${esc(JSON.stringify(ans))}'>`;
+}
+function build(sec,g,gi,si){
+  const id=si+'-'+gi;
+  const lis=g.i.map(it=>{
+    let parts=it[0].split('{}'),ans=g.mc?[it[1]]:it.slice(1),k=0,h='';
+    parts.forEach((p,j)=>{h+=esc(p);if(j<parts.length-1)h+=field(ans[k++],g.mc?it[2]:null)});
+    return `<li>${h}</li>`}).join('');
+  const n=g.i.reduce((a,it)=>a+(g.mc?1:it.length-1),0);total+=n;
+  return `<div class="grp" id="g${id}" data-n="${n}"><h3>${g.t}</h3><ol>${lis}</ol>
+  <div class="bar"><button class="btn" onclick="check('${id}')">Revisar</button><button class="btn alt" onclick="show('${id}')">Ver respuestas</button><span class="res" id="r${id}"></span></div></div>`;
+}
+function check(id){
+  const g=document.getElementById('g'+id);let ok=0;
+  g.querySelectorAll('[data-a]').forEach(el=>{
+    const a=JSON.parse(el.dataset.a).map(norm),v=norm(el.value);
+    const good=v&&a.includes(v);el.classList.toggle('ok',good);el.classList.toggle('bad',!good);if(good)ok++});
+  done[id]=ok;const n=+g.dataset.n;
+  document.getElementById('r'+id).textContent=ok===n?'¡Perfecto! ⭐':ok+' de '+n+' correctas. ¡Corrige las rojas!';
+  update();
+}
+function show(id){
+  document.querySelectorAll('#g'+id+' [data-a]').forEach(el=>{
+    if(el.classList.contains('ok'))return;
+    const a=JSON.parse(el.dataset.a)[0];
+    let s=el.nextElementSibling;if(!s||!s.classList.contains('ans')){s=document.createElement('span');s.className='ans';el.after(s)}
+    s.textContent='→ '+a});
+}
+function update(){const t=Object.values(done).reduce((a,b)=>a+b,0);sc.textContent=t+' / '+total}
+
+S.forEach((s,si)=>{
+  const b=document.createElement('button');b.textContent=s.n;b.setAttribute('role','tab');b.onclick=()=>go(si);tabs.appendChild(b);
+  const el=document.createElement('section');
+  el.innerHTML=`<div class="tip">${s.tip}</div>`+s.g.map((g,gi)=>build(s,g,gi,si)).join('');
+  secs.appendChild(el);
+});
+// Reading
+(function(){
+  const si=S.length,b=document.createElement('button');b.textContent='Reading';b.setAttribute('role','tab');b.onclick=()=>go(si);tabs.appendChild(b);
+  const el=document.createElement('section');
+  el.innerHTML=`<div class="tip"><h3>Cómo responder</h3><ul><li>Lee el texto una vez completo y luego busca cada respuesta.</li><li>Responde con <b>oraciones completas</b>: sujeto + verbo. Ej: <span class="ex-s">She visited Tokyo.</span></li><li>Escribe tu respuesta y luego mira la respuesta modelo para comparar.</li></ul></div>
+  <h2>${R.title}</h2><div class="read">${R.txt.map(p=>`<p>${p}</p>`).join('')}</div>
+  <div class="grp"><h3>Answer in complete sentences</h3><ol>${R.q.map(q=>`<li>${q[0]}<textarea aria-label="${esc(q[0])}"></textarea><details><summary>Ver respuesta modelo</summary><span class="ans">${q[1]}</span></details></li>`).join('')}</ol></div>`;
+  secs.appendChild(el);
+})();
+const bts=[...tabs.children],ss=[...secs.children];
+function go(i){bts.forEach((b,j)=>b.setAttribute('aria-selected',i===j));ss.forEach((s,j)=>s.classList.toggle('on',i===j));scrollTo({top:0})}
+go(0);update();
+</script>
+</body>
+</html>
